@@ -14,7 +14,21 @@
 */
 
 function calculateTotalSpentByCategory(transactions) {
-  return [];
+    let categoryWiseAmount = {}; // Store total amount spent in each category
+
+    for (const transaction of transactions) {
+        if (!categoryWiseAmount[transaction.category]) {
+            categoryWiseAmount[transaction.category] = 0; // Initialize to 0 if category doesn't exist
+        }
+        categoryWiseAmount[transaction.category] += transaction.price;
+    }
+
+    const categories = Object.keys(categoryWiseAmount);
+
+    return categories.reduce((arr, cat) => {
+        arr.push({ category: cat, totalSpent: categoryWiseAmount[cat] });
+        return arr;
+    }, []);
 }
 
 module.exports = calculateTotalSpentByCategory;
