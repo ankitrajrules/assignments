@@ -11,3 +11,11 @@ After the program runs, the output should be
 ```
 hello world my name is raman
 ```
+const fs = require('fs');
+fs.readFile('file.txt', (err, data) => {
+  if (err) throw err;
+  let testMessage = data.toString();
+  testMessage = testMessage.split(" ").filter((word) => word !== '')
+    .join(" ");
+  console.log(testMessage);
+});
